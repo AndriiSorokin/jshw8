@@ -10,13 +10,15 @@ gallery.map(el => {
  <img  class="gallery__image" src="${el.preview}" data-source="${el.original}" alt="${el.description}"></a></li>`
 })
 
-list.addEventListener("click", e => {
-  e.preventDefault();
+const open = function (e) {
+ e.preventDefault();
   const modalLink = e.target.dataset.source;
   console.log(modalLink);
   lightbox.classList.add("is-open");
   modalImg.src = modalLink;
-});
+}
+
+list.addEventListener("click", open);
 
 btn.addEventListener("click", () => {
      removeModal()
@@ -24,11 +26,7 @@ btn.addEventListener("click", () => {
 });
 
 overlay.addEventListener("click", e => {
-  // if (e.currentTarget !== 'IMG') {
-  //    lightbox.classList.remove("is-open");
-  //   modalImg.src = "";}
   if (e.target === e.currentTarget) {
-      // lightbox.classList.remove("is-open");
       removeModal()
   }
 });
